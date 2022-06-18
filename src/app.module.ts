@@ -4,10 +4,22 @@ import { AppService } from '@app/app.service';
 import { TagModule } from '@app/tag/tag.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import ormconfig from '@app/ormconfig';
 
 @Module({
-  imports: [TagModule, TypeOrmModule.forRoot(ormconfig), UserModule],
+  imports: [
+    TypeOrmModule.forRoot(ormconfig),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: './schema.gql',
+      debug: true,
+      playground: true,
+    }),
+    UserModule,
+    TagModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  """ID of the user"""
+  id: String!
+
+  """First Name of the User"""
+  firstName: String!
+
+  """Middle Name of the User"""
+  middleName: String!
+
+  """Last Name of the User"""
+  lastName: String!
+
+  """Role of the User"""
+  role: String!
+
+  """Is User Active"""
+  isActive: Boolean!
+
+  """User groups"""
+  groups: [String!]!
+
+  """User amount"""
+  amount: Int!
+
+  """Timstamp of User creation"""
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  findAll: [UserEntity!]!
+  findById(id: Float!): UserEntity!
+}
+
+type Mutation {
+  createUser(CreateUserInput: CreateUserInput!): UserEntity!
+}
+
+input CreateUserInput {
+  """first name of the user"""
+  firstName: String!
+
+  """middle name of the user"""
+  middleName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """role of the user"""
+  role: String!
+}
